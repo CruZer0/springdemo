@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,5 +28,9 @@ public class PersonController {
     public String getPerson(@PathVariable String id){
         Person person = repository.findById(id).get();
         return new Gson().toJson(person);
+    }
+    @DeleteMapping("/{id}")
+    public void deletePerson(@PathVariable String id){
+        repository.deleteById(id);
     }
 }
